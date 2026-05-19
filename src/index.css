@@ -1,0 +1,313 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --shadow-soft: 0 1px 2px 0 oklch(0 0 0 / 0.04), 0 8px 24px -8px oklch(0 0 0 / 0.08);
+  --shadow-elevated: 0 1px 2px 0 oklch(0 0 0 / 0.04), 0 24px 64px -16px oklch(0 0 0 / 0.12);
+
+  --animate-fade-in: fade-in 0.8s ease-out both;
+  --animate-fade-up: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-scale-in: scale-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-kenburns: kenburns 18s ease-out both;
+  --animate-shimmer: shimmer 3.4s linear infinite;
+  --animate-gold-pulse: gold-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes kenburns {
+  from { transform: scale(1.12) translate3d(0, 0, 0); }
+  to { transform: scale(1) translate3d(0, 0, 0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes gold-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.74 0.10 78 / 0.55); }
+  50% { box-shadow: 0 0 0 14px oklch(0.74 0.10 78 / 0); }
+}
+@keyframes shine {
+  0% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(220%) skewX(-20deg); }
+}
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(80%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+:root {
+  --radius: 0.875rem;
+
+  --background: oklch(0.985 0.005 80);
+  --foreground: oklch(0.18 0.01 60);
+  --ink: oklch(0.14 0.008 60);
+
+  --cream: oklch(0.965 0.012 80);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.18 0.01 60);
+  --primary-foreground: oklch(0.985 0.005 80);
+  --secondary: oklch(0.95 0.01 80);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.955 0.008 80);
+  --muted-foreground: oklch(0.48 0.012 60);
+  --accent: oklch(0.94 0.012 80);
+  --accent-foreground: var(--foreground);
+
+  --gold: oklch(0.74 0.10 78);
+  --gold-soft: oklch(0.88 0.06 78);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.88 0.008 80);
+  --input: oklch(0.88 0.008 80);
+  --ring: oklch(0.74 0.10 78);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* ── Utility classes ─────────────────────────────────────── */
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.gold-divider {
+  width: 2.5rem;
+  height: 1px;
+  background: var(--gold);
+}
+
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -6px oklch(0 0 0 / 0.18);
+}
+
+.float-slow {
+  animation: var(--animate-float);
+}
+
+.kenburns {
+  animation: var(--animate-kenburns);
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--foreground) 0%,
+    var(--gold) 40%,
+    var(--foreground) 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: var(--animate-shimmer);
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    oklch(1 0 0 / 0.25) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+}
+.btn-shine:hover::after {
+  animation: shine 0.55s ease-in-out;
+}
+
+.gold-pulse {
+  animation: var(--animate-gold-pulse);
+  border-radius: 50%;
+}
+
+/* ── Marquee ─────────────────────────────────────── */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquee);
+}
+
+/* ── Scroll progress bar ─────────────────────────────── */
+.scroll-progress {
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+  transition: transform 0.1s linear;
+}
+
+/* ── Reveal animation (IntersectionObserver-driven) ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Image zoom on hover ─────────────────────────── */
+.img-zoom img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-zoom:hover img {
+  transform: scale(1.03);
+}
+
+/* ── Link underline animation ─────────────────────── */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after,
+.link-underline.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Form fields ─────────────────────────── */
+.field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.field:focus {
+  border-color: var(--gold);
+}
+.field::placeholder {
+  color: var(--muted-foreground);
+}
+.field option {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* ── Word rise animation ─────────────────────── */
+.word-rise span > span {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.word-rise span > span > span {
+  display: inline-block;
+  animation: word-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
